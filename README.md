@@ -1,71 +1,82 @@
-# shortcutssync README
+# Keymapping Sync :computer:
 
-This is the README for your extension "shortcutssync". After writing up a brief description, we recommend including the following sections.
+This extension syncs keybindings between multiple OSs. Currently, it can sync between Windows, Linux and MacOS.
 
-## Features
+## Features :sparkles:
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Sync keybindings between multiple OSs with **customizable modifier key mapping**.
+- Define **OS specific keybindings** for the same command.
 
-For example if there is an image subfolder under your extension project workspace:
+## Extension Settings :wrench:
 
-\!\[feature X\]\(images/feature-x.png\)
+- `keybindingSync.modifierMapping`: Defines the modifier key mapping between different OSs when syncing. For example, if you want `ctrl` in config file to be mapped to `Cmd` in MacOS, you can set the mapping as follows:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+    ```json
+    {
+        "shift": {
+            "mac": "Shift",
+            "win": "Shift",
+            "linux": "Shift"
+        },
+        "ctrl": {
+            "mac": "Cmd",
+            "win": "Ctrl",
+            "linux": "Ctrl"
+        },
+        "alt": {
+            "mac": "Alt",
+            "win": "Alt",
+            "linux": "Alt"
+        },
+        "gui": {
+            "mac": "Ctrl",
+            "win": "Win",
+            "linux": "Meta"
+        }
+    }
+    ```
 
-## Requirements
+    For `"key": "ctrl+o"`, it will be mapped `"key": "ctrl+o"` on Windows and Linux, it will be mapped to `"key": "cmd+o"` on MacOS.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+    The name of modifier keys can be found [here](https://code.visualstudio.com/docs/getstarted/keybindings#_accepted-keys).
 
-## Extension Settings
+- `keybindingSync.keybindings`: Defines the keybindings for different OSs using [VSCode Keybinding rules](https://code.visualstudio.com/docs/getstarted/keybindings#_keyboard-rules). But this extension add the ability to set keymapping for specific OS. For example, if you want to use `ctrl+o` in Windows and Linux, but `cmd+o` in MacOS, you can set the keybindings as follows:
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+    ```json
+    {
+        {
+            "key": "ctrl+o",
+            "mac": "cmd+o",
+            "command": "workbench.action.quickOpen"
+        },
+    }
+    ```
 
-For example:
+    Only the `key` field is synced, so if you just define `mac`, `win` or `linux` keybinding, it will be used for that particular OS.
 
-This extension contributes the following settings:
+- `keybindingSync.keybindingsPath`: because VSCode doesn't support reading and writing keybindings from and to `keybindings.json` file, or dynamically register keybindings. So this extension overwrite the `keybindings.json` file with the keybindings defined in this setting. I know this is not a good solution, but it's the only way I can think of to make this extension work.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+    ```json
+    {
+        "mac": "~/Library/Application Support/Code/User/keybindings.json",
+        "win": "%APPDATA%\\Code\\User\\keybindings.json",
+        "linux": "~/.config/Code/User/keybindings.json"
+    }
+    ```
 
-## Known Issues
+    Before you overwrite the `keybinding.json` file, this extension will make a backup of the original file in `keybinding.json.bak` file. For now it only support `~/` and `%APPDATA%` environment variables.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## Usage :hammer:
 
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Run command `keybinding-sync.overwrite` to sync keybindings, and `keybinding-sync.restore` if you accidentally overwrite your `keybinding.json` file.
 
 ---
 
-## Following extension guidelines
+## Contributing :heart:
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+Welcome to open issues and pull requests, or any suggestions.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+## TODO :memo:
 
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- [ ] Add support to read keybindings from `keybindings.json` file.
+- [ ] Maybe add support to auto overwrite `keybindings.json`.

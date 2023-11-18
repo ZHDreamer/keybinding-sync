@@ -1,42 +1,184 @@
 {
-  "name": "shortcutssync",
-  "displayName": "ShortcutsSync",
-  "description": "",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.84.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "shortcutssync.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
-  },
-  "devDependencies": {
-    "@types/vscode": "^1.84.0",
-    "@types/mocha": "^10.0.3",
-    "@types/node": "18.x",
-    "@typescript-eslint/eslint-plugin": "^6.9.0",
-    "@typescript-eslint/parser": "^6.9.0",
-    "eslint": "^8.52.0",
-    "glob": "^10.3.10",
-    "mocha": "^10.2.0",
-    "typescript": "^5.2.2",
-    "@vscode/test-electron": "^2.3.6"
-  }
+    "name": "keybinding-sync",
+    "displayName": "Keybinding Sync",
+    "description": "",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.84.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "keybinding-sync.overwrite",
+                "title": "Keybinding Sync: Overwirte your keybindings.json, take your own risk!"
+            },
+            {
+                "command": "keybinding-sync.restore",
+                "title": "Keybinding Sync: Restore your keybindings.json."
+            }
+        ],
+        "activationEvents": [
+            "onCommand:keybinding-sync.overwrite",
+            "onCommand:keybinding-sync.restore"
+        ],
+        "configuration": {
+            "title": "keybinding-sync",
+            "properties": {
+                "keybinding-sync.keybindings": {
+                    "type": "array",
+                    "default": [],
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "key": {
+                                "type": "string"
+                            },
+                            "mac": {
+                                "type": "string"
+                            },
+                            "win": {
+                                "type": "string"
+                            },
+                            "linux": {
+                                "type": "string"
+                            },
+                            "command": {
+                                "type": "string"
+                            },
+                            "when": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "keybinding-sync.keybindingsPath": {
+                    "type": "object",
+                    "default": {
+                        "mac": "~/Library/Application Support/Code/User/keybindings.json",
+                        "win": "%APPDATA%\\Code\\User\\keybindings.json",
+                        "linux": "~/.config/Code/User/keybindings.json"
+                    },
+                    "properties": {
+                        "mac": {
+                            "type": "string"
+                        },
+                        "win": {
+                            "type": "string"
+                        },
+                        "linux": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "keybinding-sync.keymap": {
+                    "type": "object",
+                    "default": {
+                        "shift": {
+                            "mac": "Shift",
+                            "win": "Shift",
+                            "linux": "Shift"
+                        },
+                        "ctrl": {
+                            "mac": "Ctrl",
+                            "win": "Ctrl",
+                            "linux": "Ctrl"
+                        },
+                        "alt": {
+                            "mac": "Alt",
+                            "win": "Alt",
+                            "linux": "Alt"
+                        },
+                        "gui": {
+                            "mac": "Cmd",
+                            "win": "Win",
+                            "linux": "Meta"
+                        }
+                    },
+                    "properties": {
+                        "shift": {
+                            "type": "object",
+                            "properties": {
+                                "mac": {
+                                    "type": "string"
+                                },
+                                "win": {
+                                    "type": "string"
+                                },
+                                "linux": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "ctrl": {
+                            "type": "object",
+                            "properties": {
+                                "mac": {
+                                    "type": "string"
+                                },
+                                "win": {
+                                    "type": "string"
+                                },
+                                "linux": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "alt": {
+                            "type": "object",
+                            "properties": {
+                                "mac": {
+                                    "type": "string"
+                                },
+                                "win": {
+                                    "type": "string"
+                                },
+                                "linux": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "gui": {
+                            "type": "object",
+                            "properties": {
+                                "mac": {
+                                    "type": "string"
+                                },
+                                "win": {
+                                    "type": "string"
+                                },
+                                "linux": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.84.0",
+        "@types/mocha": "^10.0.3",
+        "@types/node": "18.x",
+        "@typescript-eslint/eslint-plugin": "^6.9.0",
+        "@typescript-eslint/parser": "^6.9.0",
+        "eslint": "^8.52.0",
+        "glob": "^10.3.10",
+        "mocha": "^10.2.0",
+        "typescript": "^5.2.2",
+        "@vscode/test-electron": "^2.3.6"
+    }
 }
