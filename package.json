@@ -1,13 +1,18 @@
 {
     "name": "keybinding-sync",
     "displayName": "Keybinding Sync",
-    "description": "",
+    "description": "Sync your keybindings across different platforms.",
+    "publisher": "ZHDreamer",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ZHDreamer/keybinding-sync"
+    },
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.84.0"
     },
     "categories": [
-        "Other"
+        "Keymaps"
     ],
     "activationEvents": [],
     "main": "./out/extension.js",
