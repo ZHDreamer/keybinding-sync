@@ -55,6 +55,7 @@
                             "command": {
                                 "type": "string"
                             },
+                            "args": {},
                             "when": {
                                 "type": "string"
                             }

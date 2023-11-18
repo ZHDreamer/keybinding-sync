@@ -99,6 +99,7 @@ interface Keybinding {
     win?: string;
     linux?: string;
     command: string;
+    args?: any;
     when?: string;
 }
 
@@ -127,6 +128,7 @@ function parseKeybindings(
             newKeybindings.push({
                 key: key,
                 command: keybinding.command,
+                args: keybinding.args,
                 when: keybinding.when,
             });
         }
