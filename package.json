@@ -7,14 +7,16 @@
         "type": "git",
         "url": "https://github.com/ZHDreamer/keybinding-sync"
     },
-    "version": "0.0.4",
+    "version": "0.0.5",
     "engines": {
         "vscode": "^1.84.0"
     },
     "categories": [
         "Keymaps"
     ],
-    "activationEvents": [],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
     "main": "./out/extension.js",
     "contributes": {
         "commands": [
@@ -26,9 +28,6 @@
                 "command": "keybinding-sync.restore",
                 "title": "Keybinding Sync: Restore your keybindings.json."
             }
-        ],
-        "activationEvents": [
-            "onStartupFinished"
         ],
         "configuration": {
             "title": "keybinding-sync",
