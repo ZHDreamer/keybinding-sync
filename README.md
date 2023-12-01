@@ -52,7 +52,7 @@ This extension syncs keybindings between multiple OSs. Currently, it can sync be
     }
     ```
 
-    Only the `key` field is synced, so if you just define `mac`, `win` or `linux` keybinding, it will be used for that particular OS.
+    Only the `key` field is synced. So, if you just define `mac`, `win` or `linux` keybinding, it will be used for that particular OS. And they have higher priority that `key` field don't overwrite them.
 
 - `keybindingSync.keybindingsPath`: because VSCode doesn't support reading and writing keybindings from and to `keybindings.json` file, or dynamically register keybindings. So this extension overwrite the `keybindings.json` file with the keybindings defined in this setting. I know this is not a good solution, but it's the only way I can think of to make this extension work.
 
@@ -65,6 +65,8 @@ This extension syncs keybindings between multiple OSs. Currently, it can sync be
     ```
 
     The default value is the default path of `keybindings.json` file for each OS. For now it only support `~/` and `%APPDATA%` environment variables.
+
+- `keybinding-sync.autoWrite`: If set to `true`, the extension will automatically overwrite the `keybindings.json` file when the extension is activated. Default is `false`.
 
 ## Usage 🔨
 
@@ -81,4 +83,4 @@ Welcome to open issues and pull requests, or any suggestions.
 ## TODO 📝
 
 - [ ] Add support to read keybindings from `keybindings.json` file.
-- [ ] Maybe add support to auto overwrite `keybindings.json`.
+- [x] Maybe add support to auto overwrite `keybindings.json`.

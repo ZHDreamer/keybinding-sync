@@ -7,7 +7,7 @@
         "type": "git",
         "url": "https://github.com/ZHDreamer/keybinding-sync"
     },
-    "version": "0.0.3",
+    "version": "0.0.4",
     "engines": {
         "vscode": "^1.84.0"
     },
@@ -28,12 +28,16 @@
             }
         ],
         "activationEvents": [
-            "onCommand:keybinding-sync.overwrite",
-            "onCommand:keybinding-sync.restore"
+            "onStartupFinished"
         ],
         "configuration": {
             "title": "keybinding-sync",
             "properties": {
+                "keybinding-sync.autoWrite": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Automatically overwrite your keybindings.json when `keybindings` is changed."
+                },
                 "keybinding-sync.keybindings": {
                     "type": "array",
                     "default": [],
