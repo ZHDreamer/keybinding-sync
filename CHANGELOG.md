@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.0.6] - 2024-03-09
+
+### Fixed
+
+- fix the bug that keybindings sometimes got replaced multiple times (I'm so stupid).
+
 ## [0.0.5] - 2023-12-01
 
 ### Fixed

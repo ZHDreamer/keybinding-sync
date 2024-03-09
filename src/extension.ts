@@ -127,10 +127,21 @@ function parseKeybindings(keybindings: Keybinding[], keymaps: Keymap, platform: 
             newKeybindings.push(keybinding);
         } else if (keybinding.key) {
             let key = keybinding.key.toLowerCase();
-            key = key.replace("shift", keymaps.shift[platform]);
-            key = key.replace("ctrl", keymaps.ctrl[platform]);
-            key = key.replace("alt", keymaps.alt[platform]);
-            key = key.replace("gui", keymaps.gui[platform]);
+            key = key.replace(/shift|ctrl|alt|gui/g, (matched) => {
+                switch (matched) {
+                    case "shift":
+                        return keymaps.shift[platform];
+                    case "ctrl":
+                        return keymaps.ctrl[platform];
+                    case "alt":
+                        return keymaps.alt[platform];
+                    case "gui":
+                        return keymaps.gui[platform];
+                    default:
+                        // Should never happen
+                        return matched;
+                }
+            });
             newKeybindings.push({
                 key: key,
                 command: keybinding.command,
