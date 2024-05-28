@@ -1,7 +1,7 @@
 {
     "name": "keybinding-sync",
     "displayName": "Keybinding Sync",
-    "description": "Sync your keybindings across different platforms.",
+    "description": "Map modifier keys to different OS. Help you manage keybindings across multiple platforms.",
     "publisher": "ZHDreamer",
     "repository": {
         "type": "git",

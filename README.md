@@ -38,18 +38,18 @@ This extension syncs keybindings between multiple OSs. Currently, it can sync be
 
     For `"key": "ctrl+o"`, it will be mapped `"key": "ctrl+o"` on Windows and Linux, it will be mapped to `"key": "cmd+o"` on MacOS.
 
-    The name of modifier keys can be found [here](https://code.visualstudio.com/docs/getstarted/keybindings#_accepted-keys).
+    The name of modifier keys can be found in [here](https://code.visualstudio.com/docs/getstarted/keybindings#_accepted-keys).
 
 - `keybindingSync.keybindings`: Defines the keybindings for different OSs using [VSCode Keybinding rules](https://code.visualstudio.com/docs/getstarted/keybindings#_keyboard-rules). But this extension add the ability to set keymapping for specific OS. For example, if you want to use `ctrl+o` in Windows and Linux, but `cmd+o` in MacOS, you can set the keybindings as follows:
 
     ```json
-    "keybindingSync.keybindings": {
+    "keybindingSync.keybindings": [
         {
             "key": "ctrl+o",
             "mac": "cmd+o",
             "command": "workbench.action.quickOpen"
         }
-    }
+    ]
     ```
 
     Only the `key` field is synced. So, if you just define `mac`, `win` or `linux` keybinding, it will be used for that particular OS. And they have higher priority that `key` field don't overwrite them.
