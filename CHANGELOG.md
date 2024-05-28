@@ -1,5 +1,15 @@
 # Change Log
 
+## [0.0.7] - 2024-05-28
+
+### Added
+
+- add extension logo
+
+### Fixed
+
+- misc description fixes
+
 ## [0.0.6] - 2024-03-09
 
 ### Fixed
